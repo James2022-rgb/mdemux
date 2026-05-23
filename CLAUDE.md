@@ -51,11 +51,13 @@ alphabetical order within each `set(...)` block.
 ```
 src/mdemux/
   public/   <- API surface (no L-SMASH leaks)
-    mp4_hevc_video_demuxer.h
     mp4_aac_audio_demuxer.h
+    mp4_gpmf_track_demuxer.h
+    mp4_hevc_video_demuxer.h
   private/  <- implementations (touch L-SMASH freely)
-    mp4_hevc_video_demuxer.cpp
     mp4_aac_audio_demuxer.cpp
+    mp4_gpmf_track_demuxer.cpp
+    mp4_hevc_video_demuxer.cpp
 ```
 
 ## Public API
@@ -85,6 +87,14 @@ src/mdemux/
   `esds`, per-sample raw AAC AU bytes, and stream descriptors
   (sample rate / channel count / timescale / sample count).
   No display-order permutation (AAC has no B-frame reorder).
+- `Mp4GpmfTrackDemuxer` -- sibling for the first GoPro GPMF
+  timed-metadata track (`meta` handler / `gpmd` codec). Surfaces
+  per-sample raw GPMF KLV bytes plus the sample's CTS / duration
+  (in track timescale ticks), so the caller can align telemetry
+  to the video timeline. The bytes themselves are parsed by the
+  consumer (see `mgpmf`); mdemux only locates and slices the
+  track. No display permutation, no IRAP index -- every timed
+  metadata sample is independently parseable.
 - `CountHevcVideoTracks(path)` -- free function helper for the
   multi-track case.
 
