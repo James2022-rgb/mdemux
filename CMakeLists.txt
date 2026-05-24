@@ -119,6 +119,7 @@ set(SOURCES_MDEMUX_PUBLIC
   ${SOURCES_PUBLIC_ROOT_DIR}/mp4_aac_audio_demuxer.h
   ${SOURCES_PUBLIC_ROOT_DIR}/mp4_gpmf_track_demuxer.h
   ${SOURCES_PUBLIC_ROOT_DIR}/mp4_hevc_video_demuxer.h
+  ${SOURCES_PUBLIC_ROOT_DIR}/mp4_timecode_track_demuxer.h
 )
 source_group("Public" FILES ${SOURCES_MDEMUX_PUBLIC})
 
@@ -126,6 +127,7 @@ set(SOURCES_MDEMUX_PRIVATE
   ${SOURCES_PRIVATE_ROOT_DIR}/mp4_aac_audio_demuxer.cpp
   ${SOURCES_PRIVATE_ROOT_DIR}/mp4_gpmf_track_demuxer.cpp
   ${SOURCES_PRIVATE_ROOT_DIR}/mp4_hevc_video_demuxer.cpp
+  ${SOURCES_PRIVATE_ROOT_DIR}/mp4_timecode_track_demuxer.cpp
 )
 source_group("Private" FILES ${SOURCES_MDEMUX_PRIVATE})
 
